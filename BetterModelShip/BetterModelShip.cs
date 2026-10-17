@@ -102,6 +102,7 @@ namespace BetterModelShip
             PlayerBody = Locator.GetPlayerTransform().GetComponent<OWRigidbody>();
             ModelShipBody = _modelShip.GetComponent<OWRigidbody>();
             _playerResources = GameObject.FindObjectOfType<PlayerResources>();
+            _modelShip.AddComponent<ModelShipStreamingSupport>().Initialize();
 
         }
 
