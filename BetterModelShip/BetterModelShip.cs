@@ -167,8 +167,9 @@ namespace BetterModelShip
 
         private void OnExitRemoteFlightConsole()
         {
-            ModHelper.Console.WriteLine($"OnExitRemoteFlightConsole", MessageType.Info);
+            if (!IsPilotingModelShip) return;
 
+            ModHelper.Console.WriteLine($"OnExitRemoteFlightConsole", MessageType.Info);
             IsPilotingModelShip = false;
 
 			CommonCameraAPI.ExitCamera(_OWCamera);
@@ -200,6 +201,7 @@ namespace BetterModelShip
             }
 
             PlayerBody.WarpToPositionRotation(_dummyPlayer.transform.position, _dummyPlayer.transform.rotation);
+            PlayerBody.SetVelocity(_dummyPlayer.GetAttachedOWRigidbody(false).GetPointVelocity(_dummyPlayer.transform.position));
 
             //Stops the forces from the ship attaching to the player.
             PlayerBody.SetVelocity(_dummyPlayer.GetAttachedOWRigidbody(false).GetPointVelocity(_dummyPlayer.transform.position));
